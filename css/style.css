@@ -1,0 +1,426 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+:root {
+    --width-seekbar: 0;
+    --indicator: 0;
+    --i: 0;
+    --f: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bs-black);
+    color: white;
+    width: 100vw;
+    height: 100%;
+}
+
+/* Loading Page */
+.load {
+    position: fixed;
+}
+
+#loading-page {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: loading 5s linear infinite;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loading-page span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform: rotate(calc(45deg * var(--f)));
+}
+
+#loading-page span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(50% - 5.5px);
+    background-color: var(--bs-danger);
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+}
+
+/* Image */
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Scroll Text */
+
+.texts {
+    display: flex;
+    width: auto;
+}
+
+.texts .scroll {
+    height: 1.7em;
+    line-height: 1.7em;
+    position: relative;
+    transition: all .7s;
+    overflow: hidden;
+    margin-left: 1rem;
+    width: 10rem;
+}
+
+.texts .scroll #scroll-text {
+    font-weight: bold;
+    color: var(--bs-info);
+    transform: translateX(0rem);
+    width: 10rem;
+}
+
+.texts .scroll #scroll-text h3 {
+    transition: all .7s;
+    position: absolute;
+    white-space: nowrap;
+}
+
+h3.point {
+    transform: translateX(0);
+}
+
+.texts .scroll #scroll-text h3:not(.point) {
+    transform: translateX(-40rem);
+}
+
+/* Navbar */
+
+.navbar {
+    display: flex;
+    background-color: transparent;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    height: 5rem;
+    width: 100%;
+    align-items: center;
+}
+
+.navbar .head {
+    display: flex;
+    height: 100%;
+}
+
+.navbar .head h3 {
+    display: flex;
+    font-weight: bold;
+    height: 100%;
+    align-items: center;
+}
+
+.navbar .body #more {
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: var(--bs-light);
+    position: relative;
+}
+
+.navbar .body #more::before {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: var(--bs-light);
+    position: absolute;
+    top: -7px;
+}
+
+.navbar .body #more::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 30px;
+    background-color: var(--bs-light);
+    position: absolute;
+    top: 7px;
+}
+
+.navbar .content {
+    display: none;
+}
+
+/* Hero Section */
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 60rem;
+    background-position: center;
+    background-image: url("../img/hengker.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section p {
+    letter-spacing: 2px;
+}
+
+.hero-section .texts {
+    margin-bottom: 2rem;
+}
+
+.hero-section .btn-body {
+    display: flex;
+    background: transparent;
+    width: 70%;
+    height: 3rem;
+}
+
+.hero-section .btn {
+    border-radius: 4rem;
+    width: 50%;
+    height: 100%;
+}
+
+/* About Me */
+
+.about-me {
+    margin-top: 5rem;
+}
+
+.about-me h3 {
+    font-size: 2.1rem;
+}
+
+.about-me h5 {
+    line-height: 1rem;
+    margin-top: 1.3rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.about-me h5.first {
+    margin-top: 6rem;
+}
+
+.about-me .circle-big {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    margin: auto;
+    background-color: transparent;
+    border: var(--bs-light) 1px solid;
+    border-radius: 100%;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+}
+
+.about-me .circle-big::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+    background-color: transparent;
+    border: var(--bs-light) 1px solid;
+    border-radius: 100%;
+}
+
+.about-me .circle-big .content {
+    display: block;
+    position: absolute;
+    width: 4rem;
+    left: 30px;
+    transform: rotate(calc(360deg/6 * var(--i)));
+    transform-origin: 170px;
+}
+
+.about-me .circle-big .content .content-c {
+    transform: rotate(calc(-360deg/6 * var(--i)));
+}
+
+.about-me .circle-big .content .logo {
+    width: 4rem;
+    height: 4rem;
+}
+
+.about-me .circle-big .content h4 {
+    display: block;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: .5rem;
+    width: 100px;
+    margin-left: -15px;
+}
+
+.about-me .circle-big .skill-logo .logo {
+    width: 5rem;
+    height: 5rem;
+}
+
+.about-me .first-img {
+    margin-top: 10rem;
+}
+
+.about-me .info-text {
+    margin-top: 6rem;
+}
+
+.about-me .info-text .top {
+    letter-spacing: 8px;
+    opacity: .7;
+}
+
+.about-me .info-text .name {
+    background-color: var(--bs-info);
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+    letter-spacing: 5px;
+    line-height: 5px;
+}
+
+.about-me .info-text .body {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+}
+
+.about-me .info-text .end {
+    margin-top: 1rem;
+    opacity: .5;
+}
+
+.about-me .follow {
+    display: flex;
+    border-bottom: 1px solid var(--bs-info);
+    width: 80%;
+}
+
+.about-me .follow p {
+    margin-right: 1rem;
+}
+
+.about-me .follow i {
+    letter-spacing: 2rem;
+}
+
+.about-me .card {
+    display: block;
+    background: transparent;
+}
+
+.about-me .card .card-img img {
+    margin-top: 3rem;
+}
+
+.about-me .card .card-img p {
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media only screen and (min-width: 760px) {
+    .navbar .body #more {
+        display: none;
+    }
+
+    .navbar .content {
+        display: block;
+        height: 100%;
+    }
+
+    .navbar .content ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        width: 100%;
+        height: 100%;
+    }
+
+    .navbar .content ul li {
+        display: flex;
+        margin: 0 1rem;
+    }
+
+    .navbar .content ul .btn {
+        margin-left: 2.5rem;
+    }
+
+    /* grid */
+    .grid-1 {
+        display: grid;
+        grid-template-areas: 'circlee info info';
+        grid-gap: 2rem;
+    }
+
+    .about-me .grid-1 .circle-big {
+        grid-area: circlee;
+    }
+
+
+    .about-me .grid-1 .info-text {
+        grid-area: info;
+    }
+    
+    .about-me .card {
+        display: block;
+    }
+    
+    .about-me .card .card-img {
+        display: flex;
+        margin-top: 5rem;
+        width: 100%;
+        gap: 2rem;
+    }
+    
+    .about-me .card .card-img img,
+    .about-me .card .card-img p {
+        width: 50%;
+        height: 100%;
+        margin: auto;
+    }
+    
+    .about-me .card .card-img p {
+        text-align: center;
+        font-size: 1.3em;
+    }
+    
+    .about-me .card .card-img img {
+        border-radius: 10px;
+        border: 2px solid black;
+    }
+    
+    .about-me .card .card-img2 img,
+    .about-me .card .card-img4 img {
+        display: flex;
+        order: 1;
+    }
+}
