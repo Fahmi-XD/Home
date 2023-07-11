@@ -1,1 +1,1 @@
-let data = '{"status": "online"}';
+let data = '{"status": "maintenance"}';
