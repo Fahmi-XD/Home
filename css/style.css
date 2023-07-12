@@ -17,6 +17,17 @@ body {
     color: white;
     width: 100vw;
     height: 100%;
+    overflow-x: hidden;
+}
+
+/* Other */
+audio::-webkit-media-controls-panel {
+    box-shadow: 0 0 0 transparent;
+    background-color: rgba(108, 108, 108, 1);
+}
+
+#orange {
+    color: darkorange;
 }
 
 /* Loading Page */
@@ -67,7 +78,6 @@ body {
 }
 
 /* Image */
-
 img {
     width: 100%;
     height: 100%;
@@ -92,7 +102,6 @@ img {
 
 .texts .scroll #scroll-text {
     font-weight: bold;
-    color: var(--bs-info);
     transform: translateX(0rem);
     width: 10rem;
 }
@@ -100,7 +109,11 @@ img {
 .texts .scroll #scroll-text h3 {
     transition: all .7s;
     position: absolute;
+    color: darkorange;
     white-space: nowrap;
+    height: auto;
+    /* filter: drop-shadow(0 0 10px darkorange) drop-shadow(0 0 11px darkorange); */
+    /* box-shadow: 0 0 10px darkorange; */
 }
 
 h3.point {
@@ -112,7 +125,6 @@ h3.point {
 }
 
 /* Navbar */
-
 .navbar {
     display: flex;
     background-color: transparent;
@@ -121,6 +133,7 @@ h3.point {
     height: 5rem;
     width: 100%;
     align-items: center;
+    position: relative;
 }
 
 .navbar .head {
@@ -137,9 +150,7 @@ h3.point {
 
 .navbar .body #more {
     display: block;
-    height: 3px;
     width: 30px;
-    background-color: var(--bs-light);
     position: relative;
 }
 
@@ -151,6 +162,8 @@ h3.point {
     background-color: var(--bs-light);
     position: absolute;
     top: -7px;
+    box-shadow: 0 7px 0 var(--bs-light);
+    transition: all .5s;
 }
 
 .navbar .body #more::after {
@@ -161,14 +174,60 @@ h3.point {
     background-color: var(--bs-light);
     position: absolute;
     top: 7px;
+    transition: all .5s;
+}
+
+.navbar.show .body #more::before {
+    transform: rotate(45deg) translateY(-6px) translateX(-5px);
+    transform-origin: 0;
+    box-shadow: 0 0 0 transparent;
+}
+
+.navbar.show .body #more::after {
+    transform: rotate(-45deg) translateX(1px);
+    transform-origin: 0;
 }
 
 .navbar .content {
-    display: none;
+    display: block;
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+    background: linear-gradient(rgba(33, 33, 33, 0.9), rgba(33, 33, 33, 0.5));
+    top: 0;
+    left: -250px;
+    z-index: 10;
+    box-shadow: 0 0 2px white;
+    transition: left ease-in-out .3s;
+}
+
+.navbar.show .content {
+    left: 0;
+}
+
+.navbar .content ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar .content ul li {
+    list-style: none;
+    line-height: 3em;
+}
+
+.navbar .content ul .btn {
+    width: 100px;
+    margin-top: 1rem;
+}
+
+.navbar .content ul li i {
+    margin-right: 1em;
 }
 
 /* Hero Section */
-
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -204,7 +263,6 @@ h3.point {
 }
 
 /* About Me */
-
 .about-me {
     margin-top: 5rem;
 }
@@ -226,8 +284,8 @@ h3.point {
 
 .about-me .circle-big {
     display: flex;
-    width: 400px;
-    height: 400px;
+    width: 370px;
+    height: 370px;
     margin: auto;
     background-color: transparent;
     border: var(--bs-light) 1px solid;
@@ -235,7 +293,7 @@ h3.point {
     position: relative;
     justify-content: center;
     align-items: center;
-    margin-top: 6rem;
+    margin-top: 4rem;
 }
 
 .about-me .circle-big::before {
@@ -247,8 +305,8 @@ h3.point {
     top: 0;
     bottom: 0;
     margin: auto;
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     background-color: transparent;
     border: var(--bs-light) 1px solid;
     border-radius: 100%;
@@ -260,7 +318,7 @@ h3.point {
     width: 4rem;
     left: 30px;
     transform: rotate(calc(360deg/6 * var(--i)));
-    transform-origin: 170px;
+    transform-origin: 160px;
 }
 
 .about-me .circle-big .content .content-c {
@@ -268,8 +326,8 @@ h3.point {
 }
 
 .about-me .circle-big .content .logo {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 .about-me .circle-big .content h4 {
@@ -278,7 +336,7 @@ h3.point {
     text-align: center;
     margin-top: .5rem;
     width: 100px;
-    margin-left: -15px;
+    margin-left: -25px;
 }
 
 .about-me .circle-big .skill-logo .logo {
@@ -300,7 +358,8 @@ h3.point {
 }
 
 .about-me .info-text .name {
-    background-color: var(--bs-info);
+    /* background-color: var(--bs-info); */
+    background: darkorange;
     display: inline;
     padding-left: 10px;
     padding-right: 10px;
@@ -322,6 +381,7 @@ h3.point {
     display: flex;
     border-bottom: 1px solid var(--bs-info);
     width: 80%;
+    margin-top: 4rem;
 }
 
 .about-me .follow p {
@@ -332,17 +392,183 @@ h3.point {
     letter-spacing: 2rem;
 }
 
-.about-me .card {
-    display: block;
+/* 404 Page not found */
+.error {
+    background: rgba(195, 195, 195, 1);
+    color: var(--bs-dark);
+    text-align: center;
+}
+
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.error-page .err {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 170px;
+}
+
+.error-page #img-sad {
     background: transparent;
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    z-index: 10;
 }
 
-.about-me .card .card-img img {
-    margin-top: 3rem;
+.error-page h1 {
+    display: flex;
+    font-size: 80px;
+    letter-spacing: 5rem;
+    height: 100%;
+    width: inherit;
+    text-align: center;
+    position: relative;
 }
 
-.about-me .card .card-img p {
-    margin-top: 1rem;
+/* Music */
+.playlist .music {
+    /* background: rgba(26, 26, 26, 1); */
+    background: linear-gradient(90deg, rgba(26, 26, 26, 1), rgba(26, 26, 26, 1), rgba(89, 89, 89, 0.1));
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 4rem;
+    box-shadow: 0 0 10px rgba(89, 89, 89, 1);
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+.playlist .music p {
+    font-size: 13px;
+    opacity: .4;
+    /* color: rgba(255, 121, 0, 1); */
+    color: darkorange;
+}
+
+.playlist .music h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: darkorange;
+    filter: drop-shadow(0 0 10px darkorange) drop-shadow(0 0 11px darkorange);
+}
+
+.playlist .music h4 {
+    line-height: 10px;
+    font-size: 15px;
+    opacity: .7;
+    color: darkorange;
+}
+ 
+.playlist .music audio {
+    margin-top: 20px;
+}
+
+.playlist .music img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: auto;
+    z-index: -99;
+}
+
+.playlist .list {
+    display: flex;
+    margin-top: 1.5rem;
+    background-color: rgba(26, 26, 26, 1);
+    box-shadow: 0 0 10px rgba(89, 89, 89, 1);
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform ease .3s;
+    border-bottom: solid rgba(172, 172, 172, 1) 2px;
+}
+
+.playlist .list:hover {
+    transform: translateX(10px);
+}
+
+.playlist .list .img {
+    margin-right: 20px;
+}
+
+.playlist .list .img img {
+    border-radius: 10px;
+    width: auto;
+    height: 65px;
+}
+
+.playlist .list .info {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.playlist .list .info h3 {
+    font-size: 20px;
+    line-height: 15px !important;
+}
+
+.playlist .list .info h4 {
+    font-size: 13px;
+    opacity: .5;
+}
+
+/* Shop Card */
+.shop .card {
+    width: 100%;
+    height: auto;
+    background: rgba(26, 26, 26, 1);
+    position: relative;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px rgba(89, 89, 89, 1);
+    cursor: pointer;
+}
+
+.shop .card:first-child {
+    margin-top: 4rem;
+}
+
+.shop .card .desc {
+    position: absolute;
+    bottom: -2rem;
+    left: 0;
+    transition: all ease-out .4s;
+    opacity: 0;
+    width: 100%;
+    height: 70px;
+    background: transparent;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.shop .card:hover .desc {
+    bottom: 0;
+    opacity: 1;
+    background: linear-gradient(transparent, darkorange);
+}
+
+.shop .card .desc h3 {
+    font-size: 23px;
+}
+
+.shop .card .desc p {
+    opacity: .7;
 }
 
 /* Responsive */
@@ -352,12 +578,14 @@ h3.point {
     }
 
     .navbar .content {
+        all: unset;
         display: block;
         height: 100%;
     }
 
     .navbar .content ul {
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         list-style: none;
@@ -372,55 +600,37 @@ h3.point {
 
     .navbar .content ul .btn {
         margin-left: 2.5rem;
+        margin-top: 0;
     }
 
     /* grid */
     .grid-1 {
         display: grid;
-        grid-template-areas: 'circlee info info';
+        grid-template-columns: 1fr 1fr;
         grid-gap: 2rem;
     }
 
     .about-me .grid-1 .circle-big {
-        grid-area: circlee;
-    }
-
-
-    .about-me .grid-1 .info-text {
-        grid-area: info;
-    }
-    
-    .about-me .card {
-        display: block;
-    }
-    
-    .about-me .card .card-img {
-        display: flex;
-        margin-top: 5rem;
-        width: 100%;
-        gap: 2rem;
-    }
-    
-    .about-me .card .card-img img,
-    .about-me .card .card-img p {
-        width: 50%;
-        height: 100%;
         margin: auto;
     }
-    
-    .about-me .card .card-img p {
-        text-align: center;
-        font-size: 1.3em;
+
+    .playlist {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 4rem;
     }
     
-    .about-me .card .card-img img {
-        border-radius: 10px;
-        border: 2px solid black;
+    .shop {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        width: 100%;
+        height: 100%;
+        margin-top: 4rem;
     }
     
-    .about-me .card .card-img2 img,
-    .about-me .card .card-img4 img {
-        display: flex;
-        order: 1;
+    .shop .card:first-child {
+        margin-top: 0;
     }
 }
